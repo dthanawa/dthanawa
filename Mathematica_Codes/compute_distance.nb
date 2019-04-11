@@ -1,0 +1,40 @@
+(* Compute_distance.nb
+2 methods to solve distance
+1) distanceslc
+2) distancehaversine
+To run the Mathematica file try the following command in terminal
+math-run<compute_distance.nb
+*)
+Clear;
+ClearAll;
+re = 3960;
+\[CapitalDelta]p = Abs[p1 - p2];
+\[CapitalDelta]t = Abs[t1 - t2];
+(* Spherical Law Cosine *)
+
+distanceslc[t1_, p1_, t2_, p2_] = 
+  ArcCos[Sin[t1]*Sin[t2] + 
+     Cos[t1]*Cos[t2]*Cos[Abs[p1 - p2]]]*60*1.1515;
+(*Haversine Formula*)
+
+distancehaversine[t1_, p1_, t2_, p2_] = 
+  2 * re *ArcTan[Sqrt[
+    1 - ((Sin[\[CapitalDelta]t/2])^2 + 
+       Cos[t1]*Cos[t2]*(Sin[\[CapitalDelta]p/2])^2)], 
+    Sqrt[(Sin[\[CapitalDelta]t/2])^2 + 
+     Cos[t1]*Cos[t2]*(Sin[\[CapitalDelta]p/2])^2]];
+(*Compute Distance For SLC use \[Theta] and \[Phi] in degrees , for \
+Haversine use \[Theta] and \[Phi] in radians  *)
+ab1 = 
+ Timing[distanceslc[47.1195, -88.5470, 47.9959, -87.9093]]
+bc1 = Timing[distanceslc[47.9959, -87.9093, 47.1196, -88.5470]]
+ac1 = Timing[distanceslc[47.1195, -88.5470, 47.1196, -88.5470]]
+ab2 = Timing[
+  distancehaversine[47.1195*\[Pi]/180, -88.5470*\[Pi]/180, 
+   47.9959*\[Pi]/180, -87.9093*\[Pi]/180]]
+bc2 = Timing[
+  distancehaversine[47.9959*\[Pi]/180, -87.9093*\[Pi]/180, 
+   47.1196*\[Pi]/180, -88.5470*\[Pi]/180]]
+ac2 = Timing[
+  distancehaversine[47.1195*\[Pi]/180, -88.5470*\[Pi]/180, 
+   47.1196*\[Pi]/180, -88.5470*\[Pi]/180]]

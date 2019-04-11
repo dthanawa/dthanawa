@@ -1,0 +1,1541 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     58044,       1533]
+NotebookOptionsPosition[     53588,       1464]
+NotebookOutlinePosition[     53942,       1480]
+CellTagsIndexPosition[     53899,       1477]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Clear", " ", "stored", " ", "variable"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Clear", "[", 
+     RowBox[{
+     "a", ",", "b", ",", "c", ",", "d", ",", "p", ",", "q", ",", "r", ",", 
+      "var", ",", "k", ",", "box"}], "]"}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Start", " ", "Function"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"StepbyStepCompletingSquareMethod", "[", "f_", "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\n", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Generates", " ", "boxes", " ", "corresponing", " ", "to", " ", "the", 
+        " ", "printed", " ", "form"}], " ", "*)"}], "\[IndentingNewLine]", 
+      "\t", 
+      RowBox[{
+       RowBox[{"box", " ", "=", " ", 
+        RowBox[{"ToBoxes", "[", "f", "]"}]}], ";", "\n", "\t", "\n", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Checkpoints", " ", "for", " ", "Quadratic", " ", "form"}], 
+        " ", "*)"}], "\n", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"IF", " ", "#1"}], ":", " ", 
+         RowBox[{
+         "Check", " ", "whether", " ", "equation", " ", "has", " ", "3", " ", 
+          "terms"}]}], " ", "*)"}], "\t", "\[IndentingNewLine]", "\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", 
+           RowBox[{"box", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], " ", "\[Equal]", " ", 
+          "5"}], ",", "\n", "\t", "\n", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{"IF", " ", "#2"}], ":", " ", 
+           RowBox[{
+           "Check", " ", "whether", " ", "the", " ", "equation", " ", "has", 
+            " ", "highest", " ", "power", " ", "2"}]}], " ", "*)"}], "\t", 
+         "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"box", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "5"}], "]"}], "]"}], "]"}], " ", "\[Equal]",
+              " ", "1"}], ",", "\n", "\t\t\t", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "5", ",", "1", ",", "3", ",", "2"}], 
+                  "]"}], "]"}], "]"}], " ", "\[Equal]", " ", "2"}], ",", "\n",
+               "\t\t\t\t", 
+              RowBox[{"var", " ", "=", " ", 
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "3", ",", "1", ",", "3"}], "]"}], "]"}], 
+                "]"}]}], ",", "\n", "\t\t\t\t", 
+              RowBox[{
+               RowBox[{
+               "Print", "[", 
+                "\"\<Please insert quadratic equation in form of \
+\!\(\*SuperscriptBox[\(Ax\), \(2\)]\) + Bx + C\>\"", "]"}], ";", "\n", 
+               "\t\t\t\t", 
+               RowBox[{"HoldForm", "[", 
+                RowBox[{"StepbyStepCompletingSquareMethod", "[", "f", "]"}], 
+                "]"}], ";", "\n", "\t\t\t\t", 
+               RowBox[{"Abort", "[", "]"}], ";"}]}], "\n", "\t\t\t\t", "]"}], 
+            ",", "\n", "\t\t\t", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "5", ",", "2"}], "]"}], "]"}], "]"}], " ",
+                "\[Equal]", " ", "2"}], ",", "\n", "\t\t\t\t", 
+              RowBox[{"var", " ", "=", " ", 
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "3", ",", "1", ",", "3"}], "]"}], "]"}], 
+                "]"}]}], ",", "\n", "\t\t\t\t", 
+              RowBox[{
+               RowBox[{
+               "Print", "[", 
+                
+                "\"\<Please insert quadratic equation in form of \
+\!\(\*SuperscriptBox[\(Ax\), \(2\)]\) + Bx + C\>\"", "]"}], ";", "\n", 
+               "\t\t\t\t", 
+               RowBox[{"HoldForm", "[", 
+                RowBox[{"StepbyStepCompletingSquareMethod", "[", "f", "]"}], 
+                "]"}], ";", "\n", "\t\t\t\t", 
+               RowBox[{"Abort", "[", "]"}], ";"}]}], "\n", "\t\t\t\t", 
+             "]"}]}], "\t", "\n", 
+           RowBox[{"(*", " ", 
+            RowBox[{"ENDIF", " ", "#2"}], " ", "*)"}], "\t\t\t", "\n", 
+           "\t\t\t", "]"}], ";", "\n", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Identify", " ", "the", " ", "variable"}], " ", "*)"}], 
+          "\n", "\t\t\t", 
+          RowBox[{"var", " ", "=", " ", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"box", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "3", ",", "1", ",", "3"}], "]"}], "]"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", "\n", 
+          
+          RowBox[{"(*", " ", 
+           RowBox[{
+            RowBox[{"IF", " ", "#3"}], ":", " ", 
+            RowBox[{
+            "Check", " ", "whether", " ", "the", " ", "coefficient", " ", 
+             "of", " ", 
+             SuperscriptBox["x", "2"], " ", "is", " ", "1", " ", "or", " ", 
+             "not"}]}], " ", "*)"}], "\n", "\t\t\t", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"box", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "5", ",", "1"}], "]"}], "]"}], "]"}], 
+             "\[Equal]", "3"}], ",", "\[IndentingNewLine]", 
+            "\[IndentingNewLine]", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+             "Assign", " ", "value", " ", "of", " ", "coefficient", " ", "of",
+               " ", 
+              SuperscriptBox["x", "2"], " ", "in", " ", "a"}], " ", "*)"}], 
+            "\t", "\[IndentingNewLine]", "\t\t\t\t", 
+            RowBox[{"a", " ", "=", " ", 
+             RowBox[{"ToExpression", "[", 
+              RowBox[{"box", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ",", "5", ",", "1", ",", "1"}], "]"}], "]"}], 
+              "]"}]}], ",", "\[IndentingNewLine]", "\t\t\t\t", 
+            RowBox[{"a", " ", "=", " ", "1"}]}], "  ", "\[IndentingNewLine]", 
+           
+           RowBox[{"(*", " ", 
+            RowBox[{"ENDIF", " ", "#3"}], " ", "*)"}], "\t\t", "\n", 
+           "\t\t\t\t", "]"}], ";", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Assign", " ", "value", " ", "of", " ", "coefficient", " ", "of", 
+            " ", "x", " ", "in", " ", "b"}], " ", "*)"}], "\t\t", "\n", 
+          "\t\t\t", 
+          RowBox[{"b", " ", "=", " ", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"box", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "3", ",", "1", ",", "1"}], "]"}], "]"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Assign", " ", "value", " ", "of", " ", "constant", " ", "term", 
+            " ", "in", " ", "c"}], " ", "*)"}], "\t", "\[IndentingNewLine]", 
+          "\t\t\t", 
+          RowBox[{"c", " ", "=", " ", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"box", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Check", " ", "the", " ", "sign", " ", "of", " ", "coefficient"}], 
+           " ", "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{"IF", " ", "#4", " ", "Starts"}], " ", "*)"}], "\n", 
+          "\t\t\t", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"ToString", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "4"}], "]"}], "]"}], "]"}], "==", 
+               RowBox[{"ToString", "[", "\"\<+\>\"", "]"}]}], ")"}], 
+             "\[Equal]", "True"}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"a", " ", "=", " ", "a"}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"a", " ", "=", " ", 
+             RowBox[{"-", "a"}]}]}], "\n", 
+           RowBox[{"(*", " ", 
+            RowBox[{"ENDIF", " ", "#4"}], " ", "*)"}], "\t\t", "\n", "\t\t\t",
+            "]"}], ";", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"IF", " ", "#5", " ", "Starts"}], " ", "*)"}], "\t\t\t", 
+          "\[IndentingNewLine]", "\t\t\t", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"ToString", "[", 
+                RowBox[{"box", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}], "==", 
+               RowBox[{"ToString", "[", "\"\<+\>\"", "]"}]}], ")"}], 
+             "\[Equal]", "True"}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"b", " ", "=", " ", "b"}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"b", " ", "=", " ", 
+             RowBox[{"-", "b"}]}]}], "\n", 
+           RowBox[{"(*", " ", 
+            RowBox[{"ENDIF", " ", "#5"}], " ", "*)"}], "\t\t", "\n", "\t\t\t",
+            "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Print", " ", "Step", " ", "by", " ", "step", " ", "solution"}], 
+           " ", "*)"}], "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"a", " ", 
+               SuperscriptBox["var", "2"]}], " ", "+", " ", 
+              RowBox[{"b", " ", "var"}], "+", "c"}], "]"}], ",", 
+            "\"\< = \>\"", ",", "0"}], "]"}], ";", "\[IndentingNewLine]", 
+          "\t\t", 
+          RowBox[{
+          "Print", "[", 
+           "\"\<Comparing with \!\(\*SuperscriptBox[\(Ax\), \(2\)]\)+Bx+C=0 \
+we get,\>\"", "]"}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<A = \>\"", ",", "a", ",", "\"\<,\>\"", ",", "\"\< B = \>\"", 
+            ",", "b", ",", "\"\<,\>\"", ",", "\"\< C= \>\"", ",", "c"}], 
+           "]"}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{
+          "Print", "[", "\"\<Divide the whole equation by A,\>\"", "]"}], ";",
+           "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              SuperscriptBox["var", "2"], "+", 
+              RowBox[{
+               FractionBox["b", "a"], " ", "var"}], "+", 
+              FractionBox["c", "a"]}], "]"}], ",", "\"\< = \>\"", ",", "0"}], 
+           " ", "]"}], ";", "\n", "\t\t", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Divide", " ", "equation", " ", "with", " ", "coefficient", " ", 
+            "of", " ", 
+            SuperscriptBox["x", "2"]}], " ", "*)"}], "\t\t", "\n", "\t\t", 
+          RowBox[{"c", " ", "=", " ", 
+           RowBox[{"c", "/", "a"}]}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"b", " ", "=", " ", 
+           RowBox[{"b", "/", "a"}]}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"a", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+          "\t\t", 
+          RowBox[{"d", " ", "=", " ", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             FractionBox["b", "2"], ")"}], "2"]}], ";", "\[IndentingNewLine]",
+           "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Print", " ", "the", " ", "instructions"}], " ", "*)"}], 
+          "\[IndentingNewLine]", "\t\t", 
+          RowBox[{
+          "Print", "[", 
+           "\"\<Add (\!\(\*FractionBox[\(B\), \
+\(2\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) on both the sides \>\"", "]"}], 
+          ";", "\[IndentingNewLine]", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Add", " ", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              FractionBox["B", "2"], ")"}], "2"], " ", "on", " ", "both", " ",
+             "the", " ", "sides"}], " ", "*)"}], "\t\t", "\n", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              SuperscriptBox["var", "2"], "+", 
+              RowBox[{
+               FractionBox["b", "a"], " ", "var"}], "+", "d"}], "]"}], ",", 
+            "\"\< = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              RowBox[{"TraditionalForm", "[", 
+               FractionBox[
+                RowBox[{"-", "c"}], "a"], "]"}], "+", "d"}], "]"}]}], "]"}], 
+          ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              SuperscriptBox["var", "2"], "+", 
+              RowBox[{
+               FractionBox["b", "a"], " ", "var"}], "+", "d"}], "]"}], ",", 
+            "\"\< = \>\"", ",", " ", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"-", "c"}], "a"], "+", "d"}], "]"}]}], "]"}], ";", 
+          "\n", "\t\t", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Generate", " ", "the", " ", "boxes", " ", "for", " ", "LHS", " ", 
+            "of", " ", "the", " ", "equation"}], " ", "*)"}], 
+          "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"box1", " ", "=", " ", 
+           RowBox[{"ToBoxes", "[", " ", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              SuperscriptBox["var", "2"], "+", 
+              RowBox[{
+               FractionBox["b", "a"], " ", "var"}], "+", "d"}], "]"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", "\"\<Make Simplified Form\>\"", "]"}], ";", 
+          "\n", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Print", " ", "simplified", " ", "form"}], " ", "*)"}], 
+          "\t\t", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"DisplayForm", "[", 
+               RowBox[{"RowBox", "[", 
+                RowBox[{"{", 
+                 RowBox[{"var", ",", 
+                  RowBox[{"box1", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "2"}], "]"}], "]"}],
+                   ",", 
+                  SqrtBox[
+                   RowBox[{"ToExpression", "[", 
+                    RowBox[{"box1", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "5"}], "]"}], "]"}],
+                     "]"}]]}], "}"}], "]"}], "]"}], ")"}], "2"], ",", 
+            "\"\< = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"-", "c"}], "a"], "+", "d"}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"DisplayForm", "[", 
+             RowBox[{"RowBox", "[", 
+              RowBox[{"{", 
+               RowBox[{"var", ",", 
+                RowBox[{"box1", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1", ",", "1", ",", "2"}], "]"}], "]"}], 
+                ",", 
+                SqrtBox[
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"box1", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "5"}], "]"}], "]"}],
+                   "]"}]]}], "}"}], "]"}], "]"}], ",", "\"\< = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"\[PlusMinus]", 
+              SqrtBox[
+               RowBox[{
+                FractionBox[
+                 RowBox[{"-", "c"}], "a"], "+", "d"}]]}], "]"}]}], "]"}], ";",
+           "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<\[Therefore] \>\"", ",", "var", ",", " ", "\"\< = \>\"", " ", 
+            ",", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"-", 
+              RowBox[{"DisplayForm", "[", 
+               RowBox[{"RowBox", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"box1", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "2"}], "]"}], "]"}],
+                   ",", 
+                  SqrtBox[
+                   RowBox[{"ToExpression", "[", 
+                    RowBox[{"box1", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "5"}], "]"}], "]"}],
+                     "]"}]]}], "}"}], "]"}], "]"}]}], "]"}], ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"\[PlusMinus]", 
+              SqrtBox[
+               RowBox[{
+                FractionBox[
+                 RowBox[{"-", "c"}], "a"], "+", "d"}]]}], "]"}]}], "]"}], ";",
+           "\n", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "Select", " ", "constant", " ", "element", " ", "from", " ", 
+            "LHS"}], " ", "*)"}], "\t\t", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"k", " ", "=", " ", 
+           SqrtBox[
+            RowBox[{"ToExpression", "[", 
+             RowBox[{"box1", "[", 
+              RowBox[{"[", 
+               RowBox[{"1", ",", "1", ",", "1", ",", "5"}], "]"}], "]"}], 
+             "]"}]]}], ";", "\[IndentingNewLine]", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+            RowBox[{"IF", " ", "#6"}], ":", " ", 
+            RowBox[{
+            "Check", " ", "sign", " ", "of", " ", "the", " ", "constant", " ",
+              "element"}]}], " ", "*)"}], "\t\t\t\t", "\n", "\t\t", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"ToString", "[", 
+                RowBox[{"box1", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"1", ",", "1", ",", "1", ",", "2"}], "]"}], "]"}], 
+                "]"}], "\[Equal]", " ", 
+               RowBox[{"ToString", "[", "\"\<+\>\"", "]"}]}], ")"}], 
+             "\[Equal]", "True"}], ",", "\n", "\t\t\t", 
+            RowBox[{"k", " ", "=", " ", 
+             RowBox[{"-", "k"}]}], ",", "\n", "\t\t\t", 
+            RowBox[{"k", " ", "=", " ", "k"}]}], "\n", 
+           RowBox[{"(*", " ", 
+            RowBox[{"ENDIF", " ", "#6"}], " ", "*)"}], "\t\t", "\n", "\t\t", 
+           "]"}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<\[Therefore] \>\"", ",", "var", ",", "\"\< = \>\"", ",", "k", 
+            ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"\[PlusMinus]", 
+              SqrtBox[
+               RowBox[{
+                FractionBox[
+                 RowBox[{"-", "c"}], "a"], "+", "d"}]]}], "]"}]}], "]"}], ";",
+           "\n", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Seperate", " ", "two", " ", "values"}], " ", "*)"}], 
+          "\[IndentingNewLine]", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"var", ",", "1"}], "]"}], ",", "\"\< = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"k", "+", 
+              RowBox[{"TraditionalForm", "[", 
+               SqrtBox[
+                RowBox[{
+                 FractionBox[
+                  RowBox[{"-", "c"}], "a"], "+", "d"}]], "]"}]}], "]"}], ",", 
+            "\"\< ; \>\"", ",", " ", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"var", ",", "2"}], "]"}], ",", "\"\< = \>\"", ",", 
+            RowBox[{"TraditionalForm", "[", 
+             RowBox[{"k", "-", 
+              RowBox[{"TraditionalForm", "[", 
+               SqrtBox[
+                RowBox[{
+                 FractionBox[
+                  RowBox[{"-", "c"}], "a"], "+", "d"}]], "]"}]}], "]"}]}], 
+           "]"}], ";", "\[IndentingNewLine]", "\n", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Print", " ", "final", " ", "output"}], " ", "*)"}], 
+          "\t\t", "\n", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<\[Therefore] \>\"", ",", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"var", ",", "1"}], "]"}], ",", "\"\< = \>\"", ",", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"k", "+", 
+              SqrtBox[
+               RowBox[{
+                FractionBox[
+                 RowBox[{"-", "c"}], "a"], "+", "d"}]]}], "]"}], ",", 
+            "\"\< ; \>\"", ",", " ", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"var", ",", "2"}], "]"}], ",", "\"\< = \>\"", ",", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"k", "-", 
+              SqrtBox[
+               RowBox[{
+                FractionBox[
+                 RowBox[{"-", "c"}], "a"], "+", "d"}]]}], "]"}]}], "]"}], ";",
+           "\n", "\t\t", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<Output by Solve Function \>\"", ",", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"Solve", "[", 
+              RowBox[{
+               RowBox[{"f", "\[Equal]", "0"}], ",", "x"}], "]"}], "]"}]}], 
+           "]"}]}], ",", "\n", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "If", " ", "#1", " ", "not", " ", "satisfied", " ", "then", " ", 
+           "print", " ", "error"}], " ", "*)"}], "\t\t", "\n", "\t", 
+         RowBox[{
+          RowBox[{
+          "Print", "[", 
+           "\"\<Please insert quadratic equation in form of \
+\!\(\*SuperscriptBox[\(Ax\), \(2\)]\) + Bx + C\>\"", "]"}], ";", "\n", "\t", 
+          RowBox[{"Abort", "[", "]"}], ";"}]}], "\n", "\t", "]"}]}]}], "\n", 
+     RowBox[{"(*", " ", 
+      RowBox[{"END", " ", "Function"}], " ", "*)"}], "\t", "\n", "\n", 
+     "]"}]}]}]}]], "Code",
+ CellChangeTimes->{{3.702920108283882*^9, 3.702920117036574*^9}, {
+   3.7029204305981617`*^9, 3.702920435391796*^9}, {3.7439515225558715`*^9, 
+   3.7439515378464003`*^9}, 3.7483790537765303`*^9, {3.748383199681736*^9, 
+   3.748383200173818*^9}, {3.748740874172883*^9, 3.748740885865499*^9}, {
+   3.74874137910954*^9, 3.748741399348572*^9}, {3.748798883883608*^9, 
+   3.7487988892944*^9}, {3.748798934925922*^9, 3.74879900451832*^9}, {
+   3.7487990555373163`*^9, 3.74879915060245*^9}, 3.748799199209306*^9, {
+   3.748799232705904*^9, 3.7487995475354023`*^9}, {3.748799584318718*^9, 
+   3.748799612050405*^9}, {3.748799653665264*^9, 3.748799883441722*^9}, {
+   3.7487999783079367`*^9, 3.7487999982174788`*^9}, {3.748800071412709*^9, 
+   3.748800431732238*^9}, {3.7488020923963547`*^9, 3.748802102025069*^9}, {
+   3.748802141462222*^9, 3.748802292873907*^9}, 3.74880386434159*^9, {
+   3.7488039998852577`*^9, 3.748804042959565*^9}, 3.748804115513406*^9, {
+   3.748804202055533*^9, 3.748804215481378*^9}, {3.748804326251741*^9, 
+   3.748804420361858*^9}, {3.748804498290873*^9, 3.74880452632508*^9}, {
+   3.748804577316231*^9, 3.748804691201346*^9}, {3.748804790242752*^9, 
+   3.748804827108028*^9}, {3.748805078110633*^9, 3.74880514439132*^9}, {
+   3.748805186574905*^9, 3.748805191323559*^9}, 3.748805239435161*^9, {
+   3.748805317836635*^9, 3.7488053186505127`*^9}, {3.748805439008091*^9, 
+   3.748805450836207*^9}, {3.74880555871476*^9, 3.748805751521844*^9}, {
+   3.748805787936331*^9, 3.748805792085104*^9}, {3.748806621865857*^9, 
+   3.7488068382022963`*^9}, {3.748806873589958*^9, 3.7488068807217607`*^9}, {
+   3.7488076048545313`*^9, 3.7488076797240543`*^9}, {3.748807712669929*^9, 
+   3.7488077215259037`*^9}, {3.748808718812862*^9, 3.748808723824304*^9}, {
+   3.7488090093191566`*^9, 3.7488090162986307`*^9}, {3.748809049559257*^9, 
+   3.74880906553424*^9}, {3.748809120185001*^9, 3.748809201622777*^9}, {
+   3.748809238927066*^9, 3.748809279884704*^9}, {3.748809335147833*^9, 
+   3.748809357166072*^9}, {3.748809432616581*^9, 3.7488094541080112`*^9}, {
+   3.7488168804462976`*^9, 3.7488172023125553`*^9}, {3.748817323684352*^9, 
+   3.748817528626452*^9}, {3.748817905834168*^9, 3.748817908921731*^9}, {
+   3.748819781904421*^9, 3.748819891808708*^9}, {3.7488199334159317`*^9, 
+   3.748819986992848*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"1925ee17-d5b7-4a72-b482-55962df03ca5"],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "Subsection",
+ CellChangeTimes->{{3.702920145339283*^9, 
+  3.702920146186986*^9}},ExpressionUUID->"371db858-c6fc-4f27-bd70-\
+4165a56e8d5d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StepbyStepCompletingSquareMethod", "[", 
+  RowBox[{
+   RowBox[{"2", 
+    SuperscriptBox["x", "3"]}], "-", 
+   RowBox[{"3", "x"}], "+", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.748740893766371*^9, 3.748740982866572*^9}, {
+   3.748741069155929*^9, 3.7487410957527*^9}, {3.7487420167000637`*^9, 
+   3.7487420215206327`*^9}, {3.748798909635635*^9, 3.748798924480945*^9}, {
+   3.7487989689357367`*^9, 3.748798969328312*^9}, {3.7487992089611893`*^9, 
+   3.7487992154680862`*^9}, {3.748799363088319*^9, 3.748799364842041*^9}, {
+   3.748799626708646*^9, 3.748799638527244*^9}, {3.748800014123456*^9, 
+   3.748800031435618*^9}, {3.7488022792538023`*^9, 3.7488022793928347`*^9}, {
+   3.748803874513948*^9, 3.748803896078117*^9}, {3.748804231118135*^9, 
+   3.748804265222608*^9}, 3.748804360783708*^9, {3.748805258869185*^9, 
+   3.748805274961532*^9}, {3.748807749419753*^9, 3.748807775405683*^9}, {
+   3.748807809378828*^9, 3.7488078096943417`*^9}, {3.7488087319930696`*^9, 
+   3.7488087522066317`*^9}, {3.7488088223545837`*^9, 3.748808824858429*^9}, {
+   3.748809024957959*^9, 3.748809025161621*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"5afb850a-c250-4ab6-a037-b70981067ac1"],
+
+Cell[BoxData["\<\"Please insert quadratic equation in form of \
+\\!\\(\\*SuperscriptBox[\\(Ax\\), \\(2\\)]\\) + Bx + C\"\>"], "Print",
+ CellChangeTimes->{3.748820955143375*^9},
+ CellLabel->
+  "During evaluation of \
+In[41]:=",ExpressionUUID->"82023e22-91a0-426c-ba90-58b8721a296d"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.748820955220483*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"7fa8aaa0-a5db-402c-8b7b-8209f867c41b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StepbyStepCompletingSquareMethod", "[", " ", 
+  RowBox[{
+   SuperscriptBox["x", "2"], "+", 
+   RowBox[{"2", 
+    SuperscriptBox["x", "3"]}], "+", 
+   RowBox[{"2", "x"}], "+", "5"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.7487411048665743`*^9, {3.748742013874795*^9, 3.7487420249940853`*^9}, {
+   3.748804718364258*^9, 3.748804718606488*^9}, {3.7488053430452414`*^9, 
+   3.748805343247622*^9}, {3.748805461271927*^9, 3.7488054613590813`*^9}, {
+   3.748807758531979*^9, 3.7488077690074987`*^9}, 3.7488088357587357`*^9, {
+   3.748809503751911*^9, 3.748809503927639*^9}, {3.748809539832946*^9, 
+   3.748809544327506*^9}},
+ CellLabel->"In[42]:=",ExpressionUUID->"314d9a36-eff4-49e2-ad53-5663ff70925f"],
+
+Cell[BoxData["\<\"Please insert quadratic equation in form of \
+\\!\\(\\*SuperscriptBox[\\(Ax\\), \\(2\\)]\\) + Bx + C\"\>"], "Print",
+ CellChangeTimes->{3.748820958068963*^9},
+ CellLabel->
+  "During evaluation of \
+In[42]:=",ExpressionUUID->"f656f8a1-2604-4db6-9cfd-007d59b1cede"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.748820958140189*^9},
+ CellLabel->"Out[42]=",ExpressionUUID->"bc649fc7-98bf-4d8d-a7c3-be1093f2fa32"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StepbyStepCompletingSquareMethod", "[", " ", 
+   RowBox[{
+    RowBox[{"2", "*", 
+     SuperscriptBox["x", "2"]}], "+", 
+    RowBox[{"5", "x"}], "+", "7"}], "]"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.748741112333507*^9, 3.748741129156447*^9}, 
+   3.748808852221669*^9, {3.748809560273377*^9, 3.748809566353951*^9}, {
+   3.748817579771563*^9, 3.748817595198018*^9}, {3.748817733951377*^9, 
+   3.7488177862635813`*^9}, {3.748819756444996*^9, 3.748819765073904*^9}, 
+   3.74881980963546*^9},
+ CellLabel->"In[43]:=",ExpressionUUID->"3ba7691d-c3e2-47b9-8365-f864e0136820"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox[
+    FormBox[
+     RowBox[{
+      RowBox[{"2", " ", 
+       SuperscriptBox["x", "2"]}], "+", 
+      RowBox[{"5", " ", "x"}], "+", "7"}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   "0"}],
+  SequenceForm[
+   TraditionalForm[7 + 5 $CellContext`x + 2 $CellContext`x^2], " = ", 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820960720304*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"2f16cd82-34c5-457d-afc4-22a556d489a7"],
+
+Cell[BoxData["\<\"Comparing with \\!\\(\\*SuperscriptBox[\\(Ax\\), \
+\\(2\\)]\\)+Bx+C=0 we get,\"\>"], "Print",
+ CellChangeTimes->{3.748820960770493*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"9e7cb725-0a82-48b3-ab98-4e849439475c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"A = \"\>", "\[InvisibleSpace]", "2", 
+   "\[InvisibleSpace]", "\<\",\"\>", "\[InvisibleSpace]", "\<\" B = \"\>", 
+   "\[InvisibleSpace]", "5", "\[InvisibleSpace]", "\<\",\"\>", 
+   "\[InvisibleSpace]", "\<\" C= \"\>", "\[InvisibleSpace]", "7"}],
+  SequenceForm["A = ", 2, ",", " B = ", 5, ",", " C= ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820960845003*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"dd7afb5b-3f17-4843-801f-1b7d3f74f071"],
+
+Cell[BoxData["\<\"Divide the whole equation by A,\"\>"], "Print",
+ CellChangeTimes->{3.748820960915547*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"5858132b-26ec-4f63-be78-ff1160fffd84"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"5", " ", "x"}], "2"], "+", 
+      FractionBox["7", "2"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   "0"}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[7, 2] + Rational[5, 2] $CellContext`x + $CellContext`x^2], " = ", 
+   0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209609880457`*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"5b86dbd2-f9c9-4c5b-b56f-8bac9c81107b"],
+
+Cell[BoxData["\<\"Add (\\!\\(\\*FractionBox[\\(B\\), \
+\\(2\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) on both the sides \
+\"\>"], "Print",
+ CellChangeTimes->{3.748820961054126*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"2b5c9a32-063e-4737-8088-5b35e53d018f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"5", " ", "x"}], "2"], "+", 
+      FractionBox["25", "16"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   
+   TagBox[
+    FormBox[
+     RowBox[{
+      TagBox[
+       FormBox[
+        RowBox[{"-", 
+         FractionBox["7", "2"]}],
+        TraditionalForm],
+       TraditionalForm,
+       Editable->True], "+", 
+      FractionBox["25", "16"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[25, 16] + Rational[5, 2] $CellContext`x + $CellContext`x^2], 
+   " = ", 
+   TraditionalForm[Rational[25, 16] + TraditionalForm[
+      Rational[-7, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209611254396`*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"a5c48d40-4975-4a2c-9c69-180b276d543d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"5", " ", "x"}], "2"], "+", 
+      FractionBox["25", "16"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   
+   TagBox[
+    FormBox[
+     RowBox[{"-", 
+      FractionBox["31", "16"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[25, 16] + Rational[5, 2] $CellContext`x + $CellContext`x^2], 
+   " = ", 
+   TraditionalForm[
+    Rational[-31, 16]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209611931143`*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"3d4706fc-cb41-48ca-bb73-09864d1337b7"],
+
+Cell[BoxData["\<\"Make Simplified Form\"\>"], "Print",
+ CellChangeTimes->{3.748820961338937*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"65567bc0-2a0b-42fd-a9ca-0e0d8f210fac"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     TagBox[
+      RowBox[{"x", "+", 
+       FractionBox["5", "4"]}],
+      DisplayForm], ")"}], "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"-", 
+      FractionBox["31", "16"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", DisplayForm[
+     RowBox[{$CellContext`x, "+", 
+       Rational[5, 4]}]]^2, " = ", 
+   TraditionalForm[
+    Rational[-31, 16]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209614096117`*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"633c75bf-478c-46e6-ad5f-f66c9be14740"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"x", "+", 
+     FractionBox["5", "4"]}],
+    DisplayForm], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", 
+        SqrtBox["31"]}], "4"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   DisplayForm[
+    RowBox[{$CellContext`x, "+", 
+      Rational[5, 4]}]], " = ", 
+   TraditionalForm[
+    PlusMinus[Complex[0, 
+       Rational[1, 4]] 31^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.74882096147888*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"74f52144-eca6-425b-a0b2-9939065b0843"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", "x", 
+   "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", 
+    RowBox[{"(", 
+     TagBox[
+      RowBox[{"+", 
+       FractionBox["5", "4"]}],
+      DisplayForm], ")"}]}], "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", 
+        SqrtBox["31"]}], "4"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", $CellContext`x, " = ", -DisplayForm[
+     RowBox[{"+", 
+       Rational[5, 4]}]], 
+   TraditionalForm[
+    PlusMinus[Complex[0, 
+       Rational[1, 4]] 31^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.74882096154664*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"e8b9c494-30e3-4cd9-a943-3d1f163e2e38"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", "x", 
+   "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", 
+    FractionBox["5", "4"]}], "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"\[ImaginaryI]", " ", 
+        SqrtBox["31"]}], "4"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", $CellContext`x, " = ", 
+   Rational[-5, 4], 
+   TraditionalForm[
+    PlusMinus[Complex[0, 
+       Rational[1, 4]] 31^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820961630146*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"77faefd3-a704-411c-b75c-cbce372240da"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["x", "1"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["5", "4"]}], "+", 
+      TagBox[
+       FormBox[
+        FractionBox[
+         RowBox[{"\[ImaginaryI]", " ", 
+          SqrtBox["31"]}], "4"],
+        TraditionalForm],
+       TraditionalForm,
+       Editable->True]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" ; \"\>", "\[InvisibleSpace]", 
+   
+   SubscriptBox["x", "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["5", "4"]}], "-", 
+      TagBox[
+       FormBox[
+        FractionBox[
+         RowBox[{"\[ImaginaryI]", " ", 
+          SqrtBox["31"]}], "4"],
+        TraditionalForm],
+       TraditionalForm,
+       Editable->True]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   Subscript[$CellContext`x, 1], " = ", 
+   TraditionalForm[Rational[-5, 4] + TraditionalForm[Complex[0, 
+        Rational[1, 4]] 31^Rational[1, 2]]], " ; ", 
+   Subscript[$CellContext`x, 2], " = ", 
+   TraditionalForm[Rational[-5, 4] - TraditionalForm[Complex[0, 
+       Rational[1, 4]] 31^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209617192307`*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"72174926-e46e-4488-bad0-a60f33c708c3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["x", "1"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["1", "4"], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"5", " ", "\[ImaginaryI]"}], "+", 
+      SqrtBox["31"]}], ")"}]}], "\[InvisibleSpace]", "\<\" ; \"\>", 
+   "\[InvisibleSpace]", 
+   SubscriptBox["x", "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "4"]}], " ", "\[ImaginaryI]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "5"}], " ", "\[ImaginaryI]"}], "+", 
+      SqrtBox["31"]}], ")"}]}]}],
+  SequenceForm["\[Therefore] ", 
+   Subscript[$CellContext`x, 1], " = ", Complex[0, 
+     Rational[1, 4]] (Complex[0, 5] + 31^Rational[1, 2]), " ; ", 
+   Subscript[$CellContext`x, 2], " = ", Complex[0, 
+     Rational[-1, 4]] (Complex[0, -5] + 31^Rational[1, 2])],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820961790864*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"6299b116-d93d-4c89-9354-c72996b80b4b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Output by Solve Function \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox["1", "4"]}], " ", "\[ImaginaryI]", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "5"}], " ", "\[ImaginaryI]"}], "+", 
+          SqrtBox["31"]}], ")"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{
+        FractionBox["1", "4"], " ", "\[ImaginaryI]", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"5", " ", "\[ImaginaryI]"}], "+", 
+          SqrtBox["31"]}], ")"}]}]}], "}"}]}], "}"}]}],
+  SequenceForm["Output by Solve Function ", {{$CellContext`x -> Complex[0, 
+        Rational[-1, 4]] (Complex[0, -5] + 
+       31^Rational[1, 2])}, {$CellContext`x -> Complex[0, 
+        Rational[1, 4]] (Complex[0, 5] + 31^Rational[1, 2])}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820961871554*^9},
+ CellLabel->
+  "During evaluation of \
+In[43]:=",ExpressionUUID->"9c411305-9d12-4306-a878-efedd7b869f4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StepbyStepCompletingSquareMethod", "[", 
+  RowBox[{
+   RowBox[{"19", 
+    SuperscriptBox["x", "2"]}], "+", 
+   RowBox[{"28", "x"}], "-", "4"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.748741122786446*^9, {3.748808865111897*^9, 3.748808878519528*^9}, {
+   3.748808946958354*^9, 3.748808947300063*^9}, {3.748809594753927*^9, 
+   3.748809659185576*^9}, {3.748817555774055*^9, 3.7488175637888203`*^9}, {
+   3.748817649900825*^9, 3.748817670926049*^9}, {3.7488177104961*^9, 
+   3.748817717579707*^9}, {3.7488199966522217`*^9, 3.748819997831502*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"7fb0eec8-e7d7-4fc7-9d25-2cf764f26792"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox[
+    FormBox[
+     RowBox[{
+      RowBox[{"19", " ", 
+       SuperscriptBox["x", "2"]}], "+", 
+      RowBox[{"28", " ", "x"}], "-", "4"}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   "0"}],
+  SequenceForm[
+   TraditionalForm[-4 + 28 $CellContext`x + 19 $CellContext`x^2], " = ", 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820966381385*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"5fb8e694-29ac-4f46-9992-725450777cea"],
+
+Cell[BoxData["\<\"Comparing with \\!\\(\\*SuperscriptBox[\\(Ax\\), \
+\\(2\\)]\\)+Bx+C=0 we get,\"\>"], "Print",
+ CellChangeTimes->{3.748820966495*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"fa16febb-56d1-42f1-bb13-a02310c3ae13"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"A = \"\>", "\[InvisibleSpace]", "19", 
+   "\[InvisibleSpace]", "\<\",\"\>", "\[InvisibleSpace]", "\<\" B = \"\>", 
+   "\[InvisibleSpace]", "28", "\[InvisibleSpace]", "\<\",\"\>", 
+   "\[InvisibleSpace]", "\<\" C= \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "4"}]}],
+  SequenceForm["A = ", 19, ",", " B = ", 28, ",", " C= ", -4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209665679073`*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"bbb742ad-5331-4c44-8e86-290c32a3a3e8"],
+
+Cell[BoxData["\<\"Divide the whole equation by A,\"\>"], "Print",
+ CellChangeTimes->{3.748820966638155*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"a2655c57-df84-421d-8c22-2e5bff14bad9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"28", " ", "x"}], "19"], "-", 
+      FractionBox["4", "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   "0"}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[-4, 19] + Rational[28, 19] $CellContext`x + $CellContext`x^2], 
+   " = ", 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820966712512*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"80170920-895c-4f71-b42e-609e86e96956"],
+
+Cell[BoxData["\<\"Add (\\!\\(\\*FractionBox[\\(B\\), \
+\\(2\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) on both the sides \
+\"\>"], "Print",
+ CellChangeTimes->{3.748820966786768*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"9285d119-ea03-40f0-89d0-4c6b2b44e7ac"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"28", " ", "x"}], "19"], "+", 
+      FractionBox["196", "361"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   
+   TagBox[
+    FormBox[
+     RowBox[{
+      TagBox[
+       FormBox[
+        FractionBox["4", "19"],
+        TraditionalForm],
+       TraditionalForm,
+       Editable->True], "+", 
+      FractionBox["196", "361"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[196, 361] + Rational[28, 19] $CellContext`x + $CellContext`x^2], 
+   " = ", 
+   TraditionalForm[Rational[196, 361] + TraditionalForm[
+      Rational[4, 19]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.74882096685909*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"36f602b4-13cf-490e-8dd6-ba0954f7b3d4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      SuperscriptBox["x", "2"], "+", 
+      FractionBox[
+       RowBox[{"28", " ", "x"}], "19"], "+", 
+      FractionBox["196", "361"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   
+   TagBox[
+    FormBox[
+     FractionBox["272", "361"],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   TraditionalForm[
+   Rational[196, 361] + Rational[28, 19] $CellContext`x + $CellContext`x^2], 
+   " = ", 
+   TraditionalForm[
+    Rational[272, 361]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209669867153`*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"d483b4c5-890c-48af-9182-c7c5d499244b"],
+
+Cell[BoxData["\<\"Make Simplified Form\"\>"], "Print",
+ CellChangeTimes->{3.748820967075535*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"71d09949-0ce2-4bfa-96cc-ba5e3b161ca3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     TagBox[
+      RowBox[{"x", "+", 
+       FractionBox["14", "19"]}],
+      DisplayForm], ")"}], "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     FractionBox["272", "361"],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", DisplayForm[
+     RowBox[{$CellContext`x, "+", 
+       Rational[14, 19]}]]^2, " = ", 
+   TraditionalForm[
+    Rational[272, 361]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209671522303`*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"9613ff87-c695-4a51-8f15-8e4e5bd2992c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"x", "+", 
+     FractionBox["14", "19"]}],
+    DisplayForm], "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"4", " ", 
+        SqrtBox["17"]}], "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   DisplayForm[
+    RowBox[{$CellContext`x, "+", 
+      Rational[14, 19]}]], " = ", 
+   TraditionalForm[
+    PlusMinus[Rational[4, 19] 17^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7488209672273397`*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"c8a42aca-8f89-47d1-8f9f-1f708940b9b7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", "x", 
+   "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", 
+    RowBox[{"(", 
+     TagBox[
+      RowBox[{"+", 
+       FractionBox["14", "19"]}],
+      DisplayForm], ")"}]}], "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"4", " ", 
+        SqrtBox["17"]}], "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", $CellContext`x, " = ", -DisplayForm[
+     RowBox[{"+", 
+       Rational[14, 19]}]], 
+   TraditionalForm[
+    PlusMinus[Rational[4, 19] 17^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820967303619*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"0a50974d-608a-4bae-bd52-64a01e861a2c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", "x", 
+   "\[InvisibleSpace]", "\<\" = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", 
+    FractionBox["14", "19"]}], "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{"\[PlusMinus]", 
+      FractionBox[
+       RowBox[{"4", " ", 
+        SqrtBox["17"]}], "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", $CellContext`x, " = ", 
+   Rational[-14, 19], 
+   TraditionalForm[
+    PlusMinus[Rational[4, 19] 17^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820967373712*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"9677292a-19df-454a-baac-60b8959c11c0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["x", "1"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      TagBox[
+       FormBox[
+        FractionBox[
+         RowBox[{"4", " ", 
+          SqrtBox["17"]}], "19"],
+        TraditionalForm],
+       TraditionalForm,
+       Editable->True], "-", 
+      FractionBox["14", "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True], "\[InvisibleSpace]", "\<\" ; \"\>", "\[InvisibleSpace]", 
+   
+   SubscriptBox["x", "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    FormBox[
+     RowBox[{
+      RowBox[{"-", 
+       TagBox[
+        FormBox[
+         FractionBox[
+          RowBox[{"4", " ", 
+           SqrtBox["17"]}], "19"],
+         TraditionalForm],
+        TraditionalForm,
+        Editable->True]}], "-", 
+      FractionBox["14", "19"]}],
+     TraditionalForm],
+    TraditionalForm,
+    Editable->True]}],
+  SequenceForm["\[Therefore] ", 
+   Subscript[$CellContext`x, 1], " = ", 
+   TraditionalForm[
+   Rational[-14, 19] + TraditionalForm[Rational[4, 19] 17^Rational[1, 2]]], 
+   " ; ", 
+   Subscript[$CellContext`x, 2], " = ", 
+   TraditionalForm[
+   Rational[-14, 19] - TraditionalForm[Rational[4, 19] 17^Rational[1, 2]]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820967449431*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"7d5f9f8c-df67-4dd5-887d-cd799a3629e3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\[Therefore] \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["x", "1"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["2", "19"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "7"}], "+", 
+      RowBox[{"2", " ", 
+       SqrtBox["17"]}]}], ")"}]}], "\[InvisibleSpace]", "\<\" ; \"\>", 
+   "\[InvisibleSpace]", 
+   SubscriptBox["x", "2"], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["2", "19"]}], " ", 
+    RowBox[{"(", 
+     RowBox[{"7", "+", 
+      RowBox[{"2", " ", 
+       SqrtBox["17"]}]}], ")"}]}]}],
+  SequenceForm["\[Therefore] ", 
+   Subscript[$CellContext`x, 1], " = ", 
+   Rational[2, 19] (-7 + 2 17^Rational[1, 2]), " ; ", 
+   Subscript[$CellContext`x, 2], " = ", 
+   Rational[-2, 19] (7 + 2 17^Rational[1, 2])],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820967520156*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"7dc95902-6ae3-4485-9abc-3b5232d45537"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Output by Solve Function \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox["2", "19"]}], " ", 
+        RowBox[{"(", 
+         RowBox[{"7", "+", 
+          RowBox[{"2", " ", 
+           SqrtBox["17"]}]}], ")"}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{
+        FractionBox["2", "19"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "7"}], "+", 
+          RowBox[{"2", " ", 
+           SqrtBox["17"]}]}], ")"}]}]}], "}"}]}], "}"}]}],
+  SequenceForm[
+  "Output by Solve Function ", {{$CellContext`x -> 
+     Rational[-2, 19] (7 + 2 17^Rational[1, 2])}, {$CellContext`x -> 
+     Rational[2, 19] (-7 + 2 17^Rational[1, 2])}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.748820967637416*^9},
+ CellLabel->
+  "During evaluation of \
+In[44]:=",ExpressionUUID->"3e378903-d82d-4a81-b268-20befdbc48db"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 24891, 552, 2580, "Code",ExpressionUUID->"1925ee17-d5b7-4a72-b482-55962df03ca5"],
+Cell[CellGroupData[{
+Cell[25474, 576, 155, 3, 54, "Subsection",ExpressionUUID->"371db858-c6fc-4f27-bd70-4165a56e8d5d"],
+Cell[CellGroupData[{
+Cell[25654, 583, 1199, 19, 33, "Input",ExpressionUUID->"5afb850a-c250-4ab6-a037-b70981067ac1"],
+Cell[26856, 604, 281, 5, 25, "Print",ExpressionUUID->"82023e22-91a0-426c-ba90-58b8721a296d"],
+Cell[27140, 611, 156, 2, 34, "Output",ExpressionUUID->"7fa8aaa0-a5db-402c-8b7b-8209f867c41b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27333, 618, 722, 14, 33, "Input",ExpressionUUID->"314d9a36-eff4-49e2-ad53-5663ff70925f"],
+Cell[28058, 634, 281, 5, 25, "Print",ExpressionUUID->"f656f8a1-2604-4db6-9cfd-007d59b1cede"],
+Cell[28342, 641, 156, 2, 34, "Output",ExpressionUUID->"bc649fc7-98bf-4d8d-a7c3-be1093f2fa32"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28535, 648, 622, 12, 54, "Input",ExpressionUUID->"3ba7691d-c3e2-47b9-8365-f864e0136820"],
+Cell[CellGroupData[{
+Cell[29182, 664, 591, 19, 25, "Print",ExpressionUUID->"2f16cd82-34c5-457d-afc4-22a556d489a7"],
+Cell[29776, 685, 258, 5, 25, "Print",ExpressionUUID->"9e7cb725-0a82-48b3-ab98-4e849439475c"],
+Cell[30037, 692, 531, 11, 24, "Print",ExpressionUUID->"dd7afb5b-3f17-4843-801f-1b7d3f74f071"],
+Cell[30571, 705, 212, 4, 24, "Print",ExpressionUUID->"5858132b-26ec-4f63-be78-ff1160fffd84"],
+Cell[30786, 711, 711, 22, 40, "Print",ExpressionUUID->"5b86dbd2-f9c9-4c5b-b56f-8bac9c81107b"],
+Cell[31500, 735, 294, 6, 40, "Print",ExpressionUUID->"2b5c9a32-063e-4737-8088-5b35e53d018f"],
+Cell[31797, 743, 1091, 38, 40, "Print",ExpressionUUID->"a5c48d40-4975-4a2c-9c69-180b276d543d"],
+Cell[32891, 783, 894, 31, 40, "Print",ExpressionUUID->"3d4706fc-cb41-48ca-bb73-09864d1337b7"],
+Cell[33788, 816, 201, 4, 24, "Print",ExpressionUUID->"65567bc0-2a0b-42fd-a9ca-0e0d8f210fac"],
+Cell[33992, 822, 775, 26, 39, "Print",ExpressionUUID->"633c75bf-478c-46e6-ad5f-f66c9be14740"],
+Cell[34770, 850, 824, 27, 43, "Print",ExpressionUUID->"74f52144-eca6-425b-a0b2-9939065b0843"],
+Cell[35597, 879, 900, 29, 43, "Print",ExpressionUUID->"e8b9c494-30e3-4cd9-a943-3d1f163e2e38"],
+Cell[36500, 910, 780, 24, 43, "Print",ExpressionUUID->"77faefd3-a704-411c-b75c-cbce372240da"],
+Cell[37283, 936, 1576, 51, 43, "Print",ExpressionUUID->"72174926-e46e-4488-bad0-a60f33c708c3"],
+Cell[38862, 989, 1177, 31, 40, "Print",ExpressionUUID->"6299b116-d93d-4c89-9354-c72996b80b4b"],
+Cell[40042, 1022, 1147, 31, 40, "Print",ExpressionUUID->"9c411305-9d12-4306-a878-efedd7b869f4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41238, 1059, 648, 12, 33, "Input",ExpressionUUID->"7fb0eec8-e7d7-4fc7-9d25-2cf764f26792"],
+Cell[CellGroupData[{
+Cell[41911, 1075, 596, 19, 25, "Print",ExpressionUUID->"5fb8e694-29ac-4f46-9992-725450777cea"],
+Cell[42510, 1096, 255, 5, 25, "Print",ExpressionUUID->"fa16febb-56d1-42f1-bb13-a02310c3ae13"],
+Cell[42768, 1103, 557, 12, 24, "Print",ExpressionUUID->"bbb742ad-5331-4c44-8e86-290c32a3a3e8"],
+Cell[43328, 1117, 212, 4, 24, "Print",ExpressionUUID->"a2655c57-df84-421d-8c22-2e5bff14bad9"],
+Cell[43543, 1123, 716, 22, 40, "Print",ExpressionUUID->"80170920-895c-4f71-b42e-609e86e96956"],
+Cell[44262, 1147, 294, 6, 40, "Print",ExpressionUUID->"9285d119-ea03-40f0-89d0-4c6b2b44e7ac"],
+Cell[44559, 1155, 1076, 37, 40, "Print",ExpressionUUID->"36f602b4-13cf-490e-8dd6-ba0954f7b3d4"],
+Cell[45638, 1194, 883, 30, 40, "Print",ExpressionUUID->"d483b4c5-890c-48af-9182-c7c5d499244b"],
+Cell[46524, 1226, 201, 4, 24, "Print",ExpressionUUID->"71d09949-0ce2-4bfa-96cc-ba5e3b161ca3"],
+Cell[46728, 1232, 760, 25, 39, "Print",ExpressionUUID->"9613ff87-c695-4a51-8f15-8e4e5bd2992c"],
+Cell[47491, 1259, 801, 26, 43, "Print",ExpressionUUID->"c8a42aca-8f89-47d1-8f9f-1f708940b9b7"],
+Cell[48295, 1287, 875, 28, 43, "Print",ExpressionUUID->"0a50974d-608a-4bae-bd52-64a01e861a2c"],
+Cell[49173, 1317, 754, 23, 43, "Print",ExpressionUUID->"9677292a-19df-454a-baac-60b8959c11c0"],
+Cell[49930, 1342, 1517, 51, 43, "Print",ExpressionUUID->"7d5f9f8c-df67-4dd5-887d-cd799a3629e3"],
+Cell[51450, 1395, 1066, 31, 40, "Print",ExpressionUUID->"7dc95902-6ae3-4485-9abc-3b5232d45537"],
+Cell[52519, 1428, 1029, 31, 40, "Print",ExpressionUUID->"3e378903-d82d-4a81-b268-20befdbc48db"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
